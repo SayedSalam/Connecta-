@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Light mode — from design system */
+  --background: 210 40% 98%;   /* #F8FAFC */
+  --surface: 0 0% 100%;        /* #FFFFFF */
+  --border: 215 20% 91%;
+  --foreground: 222 47% 11%;   /* #111827-ish */
+  --muted: 215 16% 47%;        /* #64748B */
+}
+
+.dark {
+  /* Dark mode — from design system */
+  --background: 229 84% 5%;    /* #020617 */
+  --surface: 222 47% 11%;      /* #0F172A */
+  --border: 215 25% 20%;
+  --foreground: 0 0% 100%;
+  --muted: 215 20% 65%;
+}
+
+* {
+  border-color: hsl(var(--border));
+}
+
+body {
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Gradient text utility */
+.gradient-text {
+  background: linear-gradient(90deg, #8b5cf6, #2563eb, #ec4899);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientMove 5s ease infinite;
+}
+
+/* Thin scrollbar */
+.thin-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
+.thin-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(139, 92, 246, 0.4);
+  border-radius: 99px;
+}
+
+@keyframes gradientMove {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.45); }
+  50% { box-shadow: 0 0 0 14px rgba(139, 92, 246, 0); }
+}
+.pulse-glow { animation: pulseGlow 2.6s infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
